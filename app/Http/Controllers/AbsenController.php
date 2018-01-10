@@ -11,10 +11,12 @@ use Illuminate\Support\Facades\Redirect;
 
 class AbsenController extends Controller
 {
+    //membuat tampilan awal
     public function getIndex() {
       return view('welcome');
     }
 
+    //proses post dari absen, intinya masukkan data ke database
     public function PROSESGAN(Request $request) {
         $mahasiswa = DB::table('mahasiswa')->get();
         $dosen = DB::table('dosen')->get();
@@ -27,7 +29,13 @@ class AbsenController extends Controller
         //checker kalo ada yg namanya 2 kali
         $temp = ""; $string = "";
         foreach ($status as $s) {
+          //karena dari form, saya gunakan array,
+          //dengan data yg di koma cara get nya seperti ini
           $ss = explode(",",$s);
+          //karena pakai checkbox, bukan radio, maka user dapat
+          // memasukkan dua data sekaligus,
+          //sehingga kita lakukan check pada bagian backend, agar user hanya menginput satu data saja.
+          //misal klik masuk saja.
           if ($ss[0] == $temp) {
             echo "masak 1 nama 2 status mas/mbak!";
             return;
@@ -59,12 +67,15 @@ class AbsenController extends Controller
       $mahasiswa = DB::table('mahasiswa')->get();
       $npm = $request->npm;
       $kode_mk = $request->kode_mk;
-      $masuk = DB::table('absensi')->where('kd_matkul_absen', $kode_mk)->where('npm_absen', $npm)->where('status', 'masuk')->count();
-      $izin = DB::table('absensi')->where('kd_matkul_absen', $kode_mk)->where('npm_absen', $npm)->where('status', 'izin')->count();
-      $sakit = DB::table('absensi')->where('kd_matkul_absen', $kode_mk)->where('npm_absen', $npm)->where('status', 'sakit')->count();
-      $alfa = DB::table('absensi')->where('kd_matkul_absen', $kode_mk)->where('npm_absen', $npm)->where('status', 'alfa')->count();
+      $dosen = $request->dosen;
+      $masuk = DB::table('absensi')->where('kd_matkul_absen', $kode_mk)->where('nip_absen', $dosen)->where('npm_absen', $npm)->where('status', 'masuk')->count();
+      $izin = DB::table('absensi')->where('kd_matkul_absen', $kode_mk)->where('nip_absen', $dosen)->where('npm_absen', $npm)->where('status', 'izin')->count();
+      $sakit = DB::table('absensi')->where('kd_matkul_absen', $kode_mk)->where('nip_absen', $dosen)->where('npm_absen', $npm)->where('status', 'sakit')->count();
+      $alfa = DB::table('absensi')->where('kd_matkul_absen', $kode_mk)->where('nip_absen', $dosen)->where('npm_absen', $npm)->where('status', 'alfa')->count();
       $namamhs = $mahasiswa->where('npm', $npm)->first()->nama;
-      return view('ceksingle', ['namamhs'=>$namamhs,'masuk'=>$masuk, 'izin'=>$izin, 'sakit'=>$sakit, 'alfa'=>$alfa]);
+      return view('ceksingle', ['dosen'=>$dosen, 'kode_mk'=>$kode_mk,
+                                'namamhs'=>$namamhs, 'masuk'=>$masuk,
+                                'izin'=>$izin, 'sakit'=>$sakit, 'alfa'=>$alfa]);
     }
 
     public function delete(Request $request) {

@@ -81,7 +81,7 @@
     </div>
     <footer class="footer">
       <div class="container">
-        <span class="text-muted colornya">Copyright 2017&copy; c3budiman</span>
+        <span class="text-muted colornya">Copyright 2017 &copy;</span>
       </div>
     </footer>
 

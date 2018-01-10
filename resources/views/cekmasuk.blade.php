@@ -32,7 +32,7 @@
       </select>
       <br>
       <label for="">Dosen : </label>
-      <select name="npm">
+      <select name="dosen">
         @foreach ($dosen as $dsn)
           <option value="{{$dsn->nip}}">{{$dsn->nama}}</option>
         @endforeach

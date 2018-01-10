@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('judul')
-  Sistem Absensi Dari Dosen By C3budiman
+  Sistem Absensi Dari Dosen
 @endsection
 
 @section('list')
@@ -14,7 +14,7 @@
 @section('isinya')
   <div class="container">
     <div class="row">
-      <h1 class="page-header"> <b>AbsenKu</b> <br><small>made by c3budiman</small></h1>
+      <h1 class="page-header"> <b>AbsenKu</b> <br><small></small></h1>
           <a class="btn btn-success btn-block" href="/absen">Absen</a> <br> <br>
           <a class="btn btn-info btn-block" href="/hitungabsensi">Hitung Absensi</a> <br> <br>
           <a class="btn btn-danger btn-block" href="/deleteabsen">Delete Semua Absen</a> <br> <br>

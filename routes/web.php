@@ -24,6 +24,3 @@ Route::post('absen', "AbsenController@PROSESGAN");
 
 Route::get('hitungabsensi', 'AbsenController@gethitung');
 Route::post('hitungabsensi', 'AbsenController@hitungabsensi');
-
-Route::get('finalisasi', 'AbsenController@getfinalisasi');
-Route::post('finalisasi', 'AbsenController@finalisasi');
