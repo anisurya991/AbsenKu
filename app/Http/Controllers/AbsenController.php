@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\absensimahasiswa;
-use App\AbsenFinal;
 use Illuminate\Support\Facades\Input;
 use DB;
 use Illuminate\Support\Facades\Redirect;
@@ -43,6 +42,7 @@ class AbsenController extends Controller
           $temp = $ss[0];
         }
 
+        //nge save data nya ke database dengan laravel query builder + model.
         foreach ($status as $sta) {
           $ss2 = explode(",",$sta);
           $npm = $ss2[0];
@@ -59,6 +59,7 @@ class AbsenController extends Controller
         return view('absen')->withErrors(['Data Berhasil di Masukkan', '']);
     }
 
+    //jika user masuk ke hal
     public function gethitung() {
       return view('cekmasuk');
     }
@@ -68,6 +69,7 @@ class AbsenController extends Controller
       $npm = $request->npm;
       $kode_mk = $request->kode_mk;
       $dosen = $request->dosen;
+      //
       $masuk = DB::table('absensi')->where('kd_matkul_absen', $kode_mk)->where('nip_absen', $dosen)->where('npm_absen', $npm)->where('status', 'masuk')->count();
       $izin = DB::table('absensi')->where('kd_matkul_absen', $kode_mk)->where('nip_absen', $dosen)->where('npm_absen', $npm)->where('status', 'izin')->count();
       $sakit = DB::table('absensi')->where('kd_matkul_absen', $kode_mk)->where('nip_absen', $dosen)->where('npm_absen', $npm)->where('status', 'sakit')->count();

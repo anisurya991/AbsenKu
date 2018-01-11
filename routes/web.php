@@ -14,12 +14,14 @@
 Route::get('/', function () {
     return view('utama');
 });
-Route::post('/', 'AbsenController@delete');
-Route::get('/deleteabsen', 'AbsenController@delete');
 
+Route::post('/', 'AbsenController@delete');
+
+Route::get('/deleteabsen', 'AbsenController@delete');
 Route::get('absen', function () {
     return view('absen');
 });
+
 Route::post('absen', "AbsenController@PROSESGAN");
 
 Route::get('hitungabsensi', 'AbsenController@gethitung');

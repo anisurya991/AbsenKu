@@ -65,11 +65,20 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
           <a class="navbar-brand" href="/">AbsenKu</a>
         </div>
-        <ul class="nav navbar-nav">
-          @yield('list')
-        </ul>
+
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            @yield('list')
+          </ul>
+        </div>
+
       </div>
     </nav>
     <div style="margin-top:30px;">
